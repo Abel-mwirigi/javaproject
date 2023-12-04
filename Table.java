@@ -9,7 +9,7 @@ public abstract class Table {
     private double discountRate=0.05;
     private int drawers, drawerCost;
 
-    public abstract double WoodPrice();
+    public abstract double WoodPrice();//abstract function
     public Table(String typeOfWood,double length,double width,int drawers)
     {   this.typeOfWood = typeOfWood;
         this.length = length;
@@ -18,13 +18,14 @@ public abstract class Table {
     }   
     public double totalCost() {
     double customSize=((width*length-9600)*aboveStandardSize);
-    drawerCost=(int) (firstDrawer+Math.max(0, drawers-1)*additionalDrawer);
+    drawerCost=(int) (firstDrawer+(drawers-1)*additionalDrawer);//calculating the drawer cost
 
     return basePrice+customSize+WoodPrice()+drawerCost;
     }
 
-    public void displayDetails(int numberOfTables){
-      double  discount=(numberOfTables>=2)?totalCost()*discountRate:0;
+    public void displayDetails(int numberOfTables)//function to display the ouput .has one parameter received from the user
+    {
+      double  discount=(numberOfTables>=2)?totalCost()*discountRate:0;//shorthand if else to check if the number of tables is more than one
       double total=totalCost()-discount;
 
        System.out.println("============================= ");
